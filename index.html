@@ -40,7 +40,7 @@ body {
 }
 
 .intro img {
-  max-width: 5em;
+  max-width: 6em;
   margin: .75em 0 .75em 0;
   height: auto;
   border: .1em solid #212830;
@@ -60,6 +60,7 @@ body {
 }
 
 
+
 /* Small devices (landscape phones, less than 768px)*/
 @media (max-width: 767.98px) {
 
@@ -76,7 +77,9 @@ body {
   }
 }
 
-
+.nohover {
+  pointer-events: none;
+}
 
 </style>
 <body>
@@ -106,7 +109,7 @@ body {
             <img class="img-fluid mx-auto d-block" height="10px;" src="http://hellowill.bonkerfield.org/im/face_prof.jpg" alt="">
           </div>
           <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center">
-          <h5>Working on <a href="">lots of things</a> nonlinearly, in parallel. Currently <a href="#">machine learning in healthcare</a>, <a href="#">automated language generation</a>, <a href="#">speculative/interactive fiction</a>, <a href="#">data viz</a>, <a href="#">quantum art</a>, <a href="#">indieweb dev</a>, and <a href="#">radical transparency</a>.</h5>
+          <h5>Working on <a href="">lots of things</a> nonlinearly, in parallel. Currently <a href="#">machine learning in healthcare</a>, <a href="#">automated language generation</a>, <a href="#">speculative fiction</a>, <a href="#">interactive art</a>, <a href="#">data viz</a>, <a href="#">quantum physics</a>, <a href="#">indieweb dev</a>, and <a href="#">radical transparency</a>.</h5>
 
         </div>
       </div>
@@ -131,7 +134,7 @@ function chart() {
 
   var width = document.body.clientWidth - margin.left - margin.right;
 
-  var height = 2000 - margin.top - margin.bottom;
+  var height = 5000 - margin.top - margin.bottom;
 
   var tooltip = d3.select(".chart")
       .append("div")
@@ -263,11 +266,16 @@ function chart() {
       svg.selectAll(".layer")
           .data(layers)
         .enter().append("a")
-          .attr("xlink:href", function(d) { return "https://"+d.values[0].link; })
+          .attr("xlink:href", function(d) { return d.values[0].link; })
           .append("path")
           .attr("class", "layer")
+          .attr("opacity", 0.6)
           .attr("d", function(d) { return area(d.values); })
           .style("fill", function(d) { return d.values[0].color; });
+
+      svg.selectAll(".layer").transition()
+        .duration(1)
+        .attr("opacity", 0.6);
 
       prefer_x_width = 100
       min_x_width = 50
@@ -314,7 +322,7 @@ function chart() {
             min_xr = xr_val
           }
         }
-        return (min_xr-min_xl) < min_x_width ? 'hidden' : 'visible'
+        return (min_xr-min_xl) < min_x_width+x_width_step ? 'hidden' : 'visible'
       }
       svg.selectAll("text")
           .data(layers)
@@ -343,7 +351,7 @@ function chart() {
             .style("text-anchor", "end")
             .style("color", "#999")
             .attr("dx", ".4em")
-            .attr("dy", "-.8em")
+            .attr("dy", "-.6em")
             .attr("transform", "rotate(-90)" );
 
       svg.selectAll(".layer")
@@ -379,9 +387,36 @@ function chart() {
         .on("mouseout", function(d, i) {
           svg.selectAll(".layer").transition()
             .duration(100)
-            .attr("opacity", '1');
+            .attr("opacity", 0.6);
           tooltip.style("visibility", "hidden");
-      });
+        });
+
+        var gradient = svg.append("defs")
+          .append("linearGradient")
+          .attr("id", "gradient")
+          .attr("x1", "100%")
+          .attr("y1", "100%")
+          .attr("x2", "100%")
+          .attr("y2", "0%")
+          .attr("spreadMethod", "pad");
+
+        gradient.append("stop")
+          .attr("offset", "0%")
+          .attr("stop-color", "#000")
+          .attr("stop-opacity", 1);
+
+        gradient.append("stop")
+          .attr("offset", "100%")
+          .attr("stop-color", "#000")
+          .attr("stop-opacity", 0);
+
+        svg.append("rect")
+          .attr('class','nohover')
+          .attr("width", 2*width)
+          .attr("height", height/3)
+          .attr("x", -width/2)
+          .attr("y", 2*height/3)
+          .style("fill", "url(#gradient)");
     });
 
   });
