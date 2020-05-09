@@ -57,6 +57,7 @@ body {
 .key {
   margin: 0;
   padding: 0;
+  color:#222;
 }
 
 
@@ -109,7 +110,7 @@ body {
             <img class="img-fluid mx-auto d-block" height="10px;" src="http://hellowill.bonkerfield.org/im/face_prof.jpg" alt="">
           </div>
           <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center">
-          <h5>Working on <a href="">lots of things</a> nonlinearly, in parallel. Currently <a href="#">machine learning in healthcare</a>, <a href="#">automated language generation</a>, <a href="#">speculative fiction</a>, <a href="#">interactive art</a>, <a href="#">data viz</a>, <a href="#">quantum physics</a>, <a href="#">indieweb dev</a>, and <a href="#">radical transparency</a>.</h5>
+          <h5>Working on lots of things, nonlinearly, in parallel. Currently <a href="#">machine learning in healthcare</a>, <a href="#">automated language generation</a>, <a href="#">quantum physics art</a>, <a href="#">indieweb dev</a>, and <a href="#">radical transparency</a>.</h5>
 
         </div>
       </div>
@@ -187,7 +188,8 @@ function chart() {
         metadata[proj] = {
             "color": meta_result.feed.entry[i].gsx$color.$t,
             "link": meta_result.feed.entry[i].gsx$link.$t,
-            "order": meta_result.feed.entry[i].gsx$order.$t
+            "order": meta_result.feed.entry[i].gsx$order.$t,
+            "description": meta_result.feed.entry[i].gsx$description.$t
         }
     }
 
@@ -232,10 +234,12 @@ function chart() {
           d.color = metadata[d.project]['color']
           d.link = metadata[d.project]['link']
           d.order = metadata[d.project]['order']
+          d.description = metadata[d.project]['description']
         } else {
           d.color = '#111111'
           d.link = '#'
           d.order = 1
+          d.description = ''
         }
       });
 
@@ -269,13 +273,13 @@ function chart() {
           .attr("xlink:href", function(d) { return d.values[0].link; })
           .append("path")
           .attr("class", "layer")
-          .attr("opacity", 0.6)
+          .attr("opacity", 0.8)
           .attr("d", function(d) { return area(d.values); })
           .style("fill", function(d) { return d.values[0].color; });
 
       svg.selectAll(".layer").transition()
         .duration(1)
-        .attr("opacity", 0.6);
+        .attr("opacity", 0.8);
 
       prefer_x_width = 100
       min_x_width = 50
@@ -302,10 +306,7 @@ function chart() {
             scale = (min_xr-min_xl)/Math.sqrt(txt_len)/50
             return "translate("+min_x+","+(min_y-10)+") scale("+scale+") translate(-"+(3*txt_len)+",30)"
           }
-
-
         }
-
       }
       function visible_func(d){
         min_y = 100000
@@ -327,6 +328,7 @@ function chart() {
       svg.selectAll("text")
           .data(layers)
         .enter().append("text")
+        .attr('class','nohover')
         .attr("fill", '#333')
         .attr("visibility", visible_func)
         .attr("transform", transform_func)
@@ -355,21 +357,11 @@ function chart() {
             .attr("transform", "rotate(-90)" );
 
       svg.selectAll(".layer")
-        .attr("opacity", 1)
-        .on("mouseover", function(d, i) {
-          svg.selectAll(".layer").transition()
-          .duration(250)
-          .attr("opacity", function(d, j) {
-            return j != i ? 0.6 : 1;
-        })});
-
-      svg.selectAll(".layer")
-        .attr("opacity", 1)
         .on("mouseover", function(d, i) {
           svg.selectAll(".layer").transition()
             .duration(100)
             .attr("opacity", function(d, j) {
-              return j != i ? 0.6 : 1;
+              return j != i ? 0.8 : 1;
         })})
         .on("mousemove", function(d, i) {
 
@@ -378,16 +370,17 @@ function chart() {
           mousey = mouse[1];
           f = d.values[0]
           var date = f.date
+          txt_width = f.description.length
           tooltip
-            .style("left", mousex +"px")
-            .style("top", mousey +"px")
-            .html("<div class='key'>" + f.project + "</div>")
+            .style("left", (mousex-txt_width*4) +"px")
+            .style("top", (mousey+100) +"px")
+            .html("<div class='key'>" + f.project + "</div><div class='desc'>"+f.description+"</div>")
             .style("visibility", "visible");
         })
         .on("mouseout", function(d, i) {
           svg.selectAll(".layer").transition()
             .duration(100)
-            .attr("opacity", 0.6);
+            .attr("opacity", 0.8);
           tooltip.style("visibility", "hidden");
         });
 
