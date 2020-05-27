@@ -92,6 +92,31 @@ body {
   pointer-events: none;
 }
 
+#loading-bar-spinner.spinner {
+    left: 50%;
+    margin-left: -20px;
+    top: 50%;
+    margin-top: -20px;
+    position: absolute;
+    z-index: 19 !important;
+    animation: loading-bar-spinner 2s linear infinite;
+}
+
+#loading-bar-spinner.spinner .spinner-icon {
+    width: 40px;
+    height: 40px;
+    border:  solid 4px transparent;
+    border-top-color:  #00C8B1 !important;
+    border-left-color: #00C8B1 !important;
+    border-radius: 50%;
+}
+
+@keyframes loading-bar-spinner {
+  0%   { transform: rotate(0deg);   transform: rotate(0deg); }
+  100% { transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+
 </style>
 <body>
 <script src="https://d3js.org/d3.v3.js"></script>
@@ -126,7 +151,7 @@ body {
       </div>
     </div>
 </header>
-
+<div id="loading-bar-spinner" class="spinner"><div class="spinner-icon"></div></div>
 <div class="chart" id="chart">
 </div>
 
@@ -144,8 +169,7 @@ function chart() {
   var margin = {top: 20, right: 40, bottom: 30, left: 30};
 
   var width = document.body.clientWidth - margin.left - margin.right;
-
-  var height = 5000 - margin.top - margin.bottom;
+  var height = document.body.clientHeight*60 - margin.top - margin.bottom;
 
   var tooltip = d3.select(".chart")
       .append("div")
@@ -420,6 +444,34 @@ function chart() {
           .attr("x", -width/2)
           .attr("y", 2*height/3)
           .style("fill", "url(#gradient)");
+        document.getElementById("loading-bar-spinner").style.display = "none";
+        // Add 'curtain' rectangle to hide entire graph
+        var curtain = svg.append('rect')
+         .attr('x', -1 * width)
+         .attr('y', -1 * height)
+         .attr('height', height)
+         .attr('width', width)
+         .attr('class', 'curtain')
+         .attr('transform', 'rotate(180)')
+         .style('fill', '#222')
+
+        // Create a shared transition for anything we're animating
+        var t = svg.transition()
+         .delay(100)
+         .duration(3000)
+         .ease('linear')
+         .each('end', function() {
+           d3.select('line.guide')
+             .transition()
+             .style('opacity', 0)
+             .remove()
+         });
+
+        t.select('rect.curtain')
+          .attr('height', 0);
+        t.select('line.guide')
+          .attr('transform', 'translate(' + height + ', 0)');
+
     });
 
   });
