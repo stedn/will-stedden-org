@@ -82,7 +82,7 @@ d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vS3lo52ZI9Zp7cLQ9emaFFEz
       d.income = +d.income;
   });
   // var max_income = d3.max(income_data, function(d) { return +d.income;} );
-  max_income = 9000
+  max_income = 20000
   console.log('income_data')
 // Parse the Data
   d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vS3lo52ZI9Zp7cLQ9emaFFEzpWaLz90WfH6NmZJ3p0dQfULSrhxFzp1OuIF1KryhVEQUny6_RSrtZMD/pub?gid=0&single=true&output=csv", function(data) {
@@ -137,7 +137,7 @@ d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vS3lo52ZI9Zp7cLQ9emaFFEz
       .attr("x",0 - (height / 2))
       .attr("dy", "1em")
       .style("text-anchor", "middle")
-      .text("Monthly Expenses");
+      .text("Quarterly Expenses");
 
     // Add Y axis
     var y = d3.scaleLinear()
