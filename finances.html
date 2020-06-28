@@ -76,24 +76,27 @@ var svg = d3.select("#my_dataviz")
 
 parseDate = d3.time.format("%Y-%m").parse
 
-d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vS3lo52ZI9Zp7cLQ9emaFFEzpWaLz90WfH6NmZJ3p0dQfULSrhxFzp1OuIF1KryhVEQUny6_RSrtZMD/pub?gid=1636824629&single=true&output=csv", function(income_data) {
-  income_data.forEach(function(d) {
-      d.month = parseDate(d.month);
-      d.income = +d.income;
-  });
-  // var max_income = d3.max(income_data, function(d) { return +d.income;} );
-  max_income = 20000
-  console.log('income_data')
 // Parse the Data
-  d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vS3lo52ZI9Zp7cLQ9emaFFEzpWaLz90WfH6NmZJ3p0dQfULSrhxFzp1OuIF1KryhVEQUny6_RSrtZMD/pub?gid=0&single=true&output=csv", function(data) {
-
-
+  d3.json("https://spreadsheets.google.com/feeds/list/1Yp7CPoeeuPLLBhxKRa4SIzQBT_PXXti8uOfKhQfmndY/1/public/values?alt=json", function(meta_result) {
+    var data = [];
+    for (var i = 0; i < meta_result.feed.entry.length; i += 1) {
+      to_push = {};
+      keys = [];
+      for (k in meta_result.feed.entry[i]){
+        if (k.startsWith('gsx')){
+          keys.push(k.substr(4))
+          to_push[k.substr(4)]=meta_result.feed.entry[i][k].$t
+        }
+      }
+      data.push(to_push)
+  }
+    max_income = 20000
     //////////
     // GENERAL //
     //////////
-
+    keys = keys.slice(1)
     // List of groups = header of the csv files
-    var keys = data.columns.slice(1)
+    // var keys = data.columns.slice(1)
 
     data.forEach(function(d,i) {
       d.month = parseDate(d.month);
@@ -290,6 +293,5 @@ d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vS3lo52ZI9Zp7cLQ9emaFFEz
           .on("mouseleave", noHighlight)
 
   })
-})
 }
 </script>

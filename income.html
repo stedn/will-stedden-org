@@ -80,7 +80,16 @@ var svg = d3.select("#my_dataviz")
 
 parseDate = d3.time.format("%Y-%m").parse
 
-d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vS3lo52ZI9Zp7cLQ9emaFFEzpWaLz90WfH6NmZJ3p0dQfULSrhxFzp1OuIF1KryhVEQUny6_RSrtZMD/pub?gid=1636824629&single=true&output=csv", function(income_data) {
+d3.json("https://spreadsheets.google.com/feeds/list/1Yp7CPoeeuPLLBhxKRa4SIzQBT_PXXti8uOfKhQfmndY/2/public/values?alt=json", function(meta_result) {
+  var income_data = [];
+  for (var i = 0; i < meta_result.feed.entry.length; i += 1) {
+      income_data.push({
+          "month": meta_result.feed.entry[i].gsx$month.$t,
+          "income": meta_result.feed.entry[i].gsx$income.$t,
+          "expenses": meta_result.feed.entry[i].gsx$expenses.$t,
+      })
+  }
+
   income_data.forEach(function(d) {
       d.month = parseDate(d.month);
       d.income = +d.income;
