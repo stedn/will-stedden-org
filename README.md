@@ -5,4 +5,4 @@ sources of examples instructions
 - [get data from google spreadsheet](https://stackoverflow.com/questions/40984524/d3-request-retrieval-of-a-google-spreadsheet-csv-json-file-fails)
 - [redrawing](https://bl.ocks.org/curran/3a68b0c81991e2e94b19)
 - [responsive](https://stackoverflow.com/questions/9400615/whats-the-best-way-to-make-a-d3-js-visualisation-layout-responsive)
-- [profile photo] (https://codepen.io/jdiliegghio/pen/NMQQOa)
+- [profile photo](https://codepen.io/jdiliegghio/pen/NMQQOa)
