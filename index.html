@@ -16,6 +16,99 @@
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300&display=swap" rel="stylesheet">
 
 <style>
+.tlite {
+  background: #111;
+  color: white;
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  font-weight: normal;
+  text-decoration: none;
+  text-align: left;
+  padding: 0.6em 0.75rem;
+  border-radius: 4px;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s;
+  white-space: nowrap;
+  box-shadow: 0 0.5rem 1rem -0.5rem black;
+  z-index: 1000;
+  -webkit-backface-visibility: hidden;
+}
+
+.tlite-table td,
+.tlite-table th {
+  position: relative;
+}
+
+.tlite-visible {
+  visibility: visible;
+  opacity: 0.9;
+}
+
+.tlite::before {
+  content: ' ';
+  display: block;
+  background: inherit;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  transform: rotate(45deg);
+}
+
+.tlite-n::before {
+  top: -3px;
+  left: 50%;
+  margin-left: -5px;
+}
+
+.tlite-nw::before {
+  top: -3px;
+  left: 10px;
+}
+
+.tlite-ne::before {
+  top: -3px;
+  right: 10px;
+}
+
+.tlite-s::before {
+  bottom: -3px;
+  left: 50%;
+  margin-left: -5px;
+}
+
+.tlite-se::before {
+  bottom: -3px;
+  right: 10px;
+}
+
+.tlite-sw::before {
+  bottom: -3px;
+  left: 10px;
+}
+
+.tlite-w::before {
+  left: -3px;
+  top: 50%;
+  margin-top: -5px;
+}
+
+.tlite-e::before {
+  right: -3px;
+  top: 50%;
+  margin-top: -5px;
+}
+
+</style>
+
+<script>
+  /* tlite tooltip package, Copyright (c) 2015 Chris Davies, MIT license */
+  function tlite(t){document.addEventListener("mouseover",function(e){var i=e.target,n=t(i);n||(n=(i=i.parentElement)&&t(i)),n&&tlite.show(i,n,!0)})}tlite.show=function(t,e,i){var n="data-tlite";e=e||{},(t.tooltip||function(t,e){function o(){tlite.hide(t,!0)}function l(){r||(r=function(t,e,i){function n(){o.className="tlite tlite-"+r+s;var e=t.offsetTop,i=t.offsetLeft;o.offsetParent===t&&(e=i=0);var n=t.offsetWidth,l=t.offsetHeight,d=o.offsetHeight,f=o.offsetWidth,a=i+n/2;o.style.top=("s"===r?e-d-10:"n"===r?e+l+10:e+l/2-d/2)+"px",o.style.left=("w"===s?i:"e"===s?i+n-f:"w"===r?i+n+10:"e"===r?i-f-10:a-f/2)+"px"}var o=document.createElement("span"),l=i.grav||t.getAttribute("data-tlite")||"n";o.innerHTML=e,t.appendChild(o);var r=l[0]||"",s=l[1]||"";n();var d=o.getBoundingClientRect();return"s"===r&&d.top<0?(r="n",n()):"n"===r&&d.bottom>window.innerHeight?(r="s",n()):"e"===r&&d.left<0?(r="w",n()):"w"===r&&d.right>window.innerWidth&&(r="e",n()),o.className+=" tlite-visible",o}(t,d,e))}var r,s,d;return t.addEventListener("mousedown",o),t.addEventListener("mouseleave",o),t.tooltip={show:function(){d=t.title||t.getAttribute(n)||d,t.title="",t.setAttribute(n,""),d&&!s&&(s=setTimeout(l,i?150:1))},hide:function(t){if(i===t){s=clearTimeout(s);var e=r&&r.parentNode;e&&e.removeChild(r),r=void 0}}}}(t,e)).show()},tlite.hide=function(t,e){t.tooltip&&t.tooltip.hide(e)},"undefined"!=typeof module&&module.exports&&(module.exports=tlite);
+  tlite(el => el.classList.contains('mytooltip'));
+</script>
+
+<style>
 
 
 .svg-container {
@@ -141,12 +234,16 @@ body {
   <header class="intro" id="intro-link">
     <div class="container">
       <div class="row text-center">
-           <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 order-1">
-            <img class="img-fluid mx-auto d-block" height="10px;" src="/face_prof.jpg" alt="">
-          </div>
-          <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center">
-          <h5>Working on lots of things in parallel. Currently <a href="https://anthem.ai">machine learning in healthcare</a>, <a href="https://bonkerfield.org/2020/02/combining-gpt-2-and-bert/">automated language generation</a>, <a href="https://bonkerfield.org/2020/04/qmb-burning-man-honorarium/">quantum physics art</a>, <a href="https://bonkerfield.org/2020/04/getting-so-so-social/">indieweb dev</a>, and <a href="https://viewfoil.bonkerfield.org/">online transparency</a>.</h5>
-
+        <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 order-1">
+          <img class="img-fluid mx-auto d-block" height="10px;" src="/face_prof.jpg" alt="">
+        </div>
+        <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center">
+        <h5>Working on lots of things in parallel. Currently <a href="https://anthem.ai">machine learning in healthcare</a>, <a href="https://bonkerfield.org/2020/02/combining-gpt-2-and-bert/">automated language generation</a>, <a href="https://bonkerfield.org/2020/07/su-chef-braccio-yolo/">automated food prep</a>, and <a href="https://viewfoil.bonkerfield.org/">personal online transparency</a>.</h5>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center">
+        <h4>Visual Resumé <a href="https://bonkerfield.org/2020/05/timeline-streamgraph-google-sheet/"><small class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>Displays concurrent projects I've worked on. <br/> Width indicates how much time I spent on each project. <br/> Time runs vertical with most recent work at the top.</p>" >🛈</small></a></h4>
         </div>
       </div>
     </div>
