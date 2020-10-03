@@ -267,7 +267,7 @@ parseDate = d3.time.format("%Y-%m").parse
       // Add one dot in the legend for each name.
       var size = 20
       svg.selectAll("myrect")
-        .data(keys)
+        .data(keys.reverse())
         .enter()
         .append("rect")
           .attr("x", width+extra_right/2)
