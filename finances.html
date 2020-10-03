@@ -280,7 +280,7 @@ parseDate = d3.time.format("%Y-%m").parse
 
       // Add one dot in the legend for each name.
       svg.selectAll("mylabels")
-        .data(keys)
+        .data(keys.reverse())
         .enter()
         .append("text")
           .attr("x", width +extra_right/2+ size*1.2)
