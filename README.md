@@ -1,3 +1,7 @@
+
+# will.stedden.org
+This is the code for my personal landing page. It contains a few visualizations of my career, professional network, and finances.  The code is a mess, but I'll straighten it out eventually.
+
 sources of examples instructions
 
 - [original](https://gist.github.com/WillTurman/4631136)
