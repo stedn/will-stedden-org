@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<!-- Global site tag (gtag.js) - Google Analytics -->
+<html lang="en">
+
+  <meta charset="utf-8">
+<title>Will Stedden</title>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132451521-5"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -14,7 +16,6 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300&display=swap" rel="stylesheet">
-
 <style>
 .tlite {
   background: #111;
@@ -107,7 +108,6 @@
   function tlite(t){document.addEventListener("mouseover",function(e){var i=e.target,n=t(i);n||(n=(i=i.parentElement)&&t(i)),n&&tlite.show(i,n,!0)})}tlite.show=function(t,e,i){var n="data-tlite";e=e||{},(t.tooltip||function(t,e){function o(){tlite.hide(t,!0)}function l(){r||(r=function(t,e,i){function n(){o.className="tlite tlite-"+r+s;var e=t.offsetTop,i=t.offsetLeft;o.offsetParent===t&&(e=i=0);var n=t.offsetWidth,l=t.offsetHeight,d=o.offsetHeight,f=o.offsetWidth,a=i+n/2;o.style.top=("s"===r?e-d-10:"n"===r?e+l+10:e+l/2-d/2)+"px",o.style.left=("w"===s?i:"e"===s?i+n-f:"w"===r?i+n+10:"e"===r?i-f-10:a-f/2)+"px"}var o=document.createElement("span"),l=i.grav||t.getAttribute("data-tlite")||"n";o.innerHTML=e,t.appendChild(o);var r=l[0]||"",s=l[1]||"";n();var d=o.getBoundingClientRect();return"s"===r&&d.top<0?(r="n",n()):"n"===r&&d.bottom>window.innerHeight?(r="s",n()):"e"===r&&d.left<0?(r="w",n()):"w"===r&&d.right>window.innerWidth&&(r="e",n()),o.className+=" tlite-visible",o}(t,d,e))}var r,s,d;return t.addEventListener("mousedown",o),t.addEventListener("mouseleave",o),t.tooltip={show:function(){d=t.title||t.getAttribute(n)||d,t.title="",t.setAttribute(n,""),d&&!s&&(s=setTimeout(l,i?150:1))},hide:function(t){if(i===t){s=clearTimeout(s);var e=r&&r.parentNode;e&&e.removeChild(r),r=void 0}}}}(t,e)).show()},tlite.hide=function(t,e){t.tooltip&&t.tooltip.hide(e)},"undefined"!=typeof module&&module.exports&&(module.exports=tlite);
   tlite(el => el.classList.contains('mytooltip'));
 </script>
-
 <style>
 
 
@@ -181,9 +181,6 @@ body {
   }
 }
 
-.nohover {
-  pointer-events: none;
-}
 
 #loading-bar-spinner.spinner {
     left: 50%;
@@ -209,18 +206,87 @@ body {
   100% { transform: rotate(360deg); transform: rotate(360deg); }
 }
 
+.axis {
+  stroke:               #000;
+  stroke-width:         1.5px;
+}
+
+
+
+.node ellipse                     { stroke:         transparent;
+                                        stroke-width:2px;}
+.node .active_it ellipse           { stroke:         #67C5C2;   }
+.node .active_is ellipse          { stroke:         #3D2117;  }
+.node .active_its ellipse          { stroke:         #3D2117;  }
+.node .active_mo ellipse          { stroke:         #C84127;    }
+
+.node .labl                {opacity: 0.1;font-size:12px}
+.node .target           {opacity: 0.5;font-size:12px}
+.node .source           {opacity: 0.5;font-size:12px}
+.node .active_it .labl                {opacity: 1;font-size:14px}
+.node .active_is .labl                {opacity: 1;font-size:14px}
+.node .active_its .labl                {opacity: 1;font-size:14px}
+
+
+.link {
+  fill:                           none;
+  stroke:                         #ccc;
+  stroke-opacity:                 0.5;
+  stroke-width:                   2px;
+}
+
+.link.active_it, .link.active_is, .link.active_its, .link.active_mo {
+  stroke-opacity:                 1;
+  stroke-width:                   3px;
+}
+
+.link.active_mo                   { stroke:       #67C5C2;    }
+
+.node rect {
+  fill-opacity: .9;
+  shape-rendering: crispEdges;
+}
+
+.node text {
+  pointer-events: none;
+  color: blue;
+}
+
+.link {
+  fill: none;
+  stroke-opacity: .5;
+}
+
+.link:hover {
+  stroke-opacity: .5;
+}
+.alignleft {
+  float: left;
+  width:33.33333%;
+  text-align:left;
+}
+.aligncenter {
+  float: left;
+  width:33.33333%;
+  text-align:center;
+}
+.alignright {
+ float: left;
+ width:33.33333%;
+ text-align:right;
+}​
 
 </style>
-<body>
-<script src="https://d3js.org/d3.v3.js"></script>
 
-  <div class="navigationBar fixed-top">
+    <body>
+
+      <div class="navigationBar fixed-top">
     <div class="container">
       <nav class="navbar navbar-expand navbar-light bg-light">
         <a class="navbar-brand" href="#">will.stedden</a>
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="https://bonkerfield.org">projects</a>
+            <a class="nav-link" href="https://bonkerfield.org">bonkerfield</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="https://viewfoil.bonkerfield.org">contact</a>
@@ -232,12 +298,15 @@ body {
       </nav>
     </div>
   </div>
+
+      <script src="https://d3js.org/d3.v3.js"></script>
+
 <!--Responsive Introduction contained here -->
-  <header class="intro" id="intro-link">
+<header class="intro" id="intro-link">
     <div class="container">
       <div class="row text-center">
         <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 order-1">
-          <img class="img-fluid mx-auto d-block" height="10px;" src="/camping.png" alt="">
+          <img class="img-fluid mx-auto d-block" height="10px;" src="/camping.png" alt="" />
         </div>
         <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center">
         <h5>Working on lots of things in parallel. Currently <a href="https://anthem.ai">machine learning in healthcare</a>, <a href="https://worcfoods.com/">a worker-owned robotics cooperative</a>, and <a href="https://viewfoil.bonkerfield.org/">personal online transparency</a>.</h5></div>
@@ -245,7 +314,7 @@ body {
       <div class="row text-center">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center">
         <h4><a href="/">←<small style="font-size:14px;">Visual Resumé </small></a>Timeline Resumé <a href="/classic.html"><small style="font-size:14px;">Classic Resumé</small>→</a></h4>
-          <a href="https://bonkerfield.org/2020/05/timeline-streamgraph-google-sheet/"><span class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>Displays concurrent projects I've worked on. <br/> Width indicates how much time I spent on each project. <br/> Time runs vertical with most recent work at the top.</p>" >🛈</a>
+          <a href="https://bonkerfield.org/2020/05/timeline-streamgraph-google-sheet/"><span class="mytooltip" tlite="se" title="&lt;p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;&gt;Displays concurrent projects I've worked on. &lt;br/&gt; Width indicates how much time I spent on each project. &lt;br/&gt; Time runs vertical with most recent work at the top.&lt;/p&gt;">🛈</span></a>
         </div>
       </div>
     </div>
@@ -575,3 +644,9 @@ function chart() {
   });
 }
 </script>
+
+
+
+
+    </body>
+</html>

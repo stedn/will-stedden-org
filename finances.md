@@ -1,55 +1,6 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@300&display=swap" rel="stylesheet">
-
-<style>
-
-
-body {
-  background: #222; /* Old browsers */
-  font-family: 'Exo', sans-serif;
-  text-align: center;
-  font-weight: 700;
-  color: #FFF;
-}
-
-.key {
-  margin: 0;
-  padding: 0;
-  color:#222;
-}
-
-.axis{
-  color:white;
-  fill: white;
-  stroke: white;
-}
-
-.axis line{
-  stroke: white;
-}
-
-.axis path{
-  stroke: white;
-}
-
-.axis text{
-  fill: white;
-}
-
-.line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 2px;
-}
-
-</style>
-<body>
-<script src="https://d3js.org/d3.v3.js"></script>
-<script src="https://d3js.org/d3.v4.js"></script>
-<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-
+---
+layout: graph
+---
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
 

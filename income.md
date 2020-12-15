@@ -1,60 +1,6 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@300&display=swap" rel="stylesheet">
-
-<style>
-
-
-body {
-  background: #222; /* Old browsers */
-  font-family: 'Exo', sans-serif;
-  text-align: center;
-  font-weight: 700;
-  color: #FFF;
-}
-
-.key {
-  margin: 0;
-  padding: 0;
-  color:#222;
-}
-
-.axis{
-  color:white;
-  fill: white;
-  stroke: white;
-}
-
-.axis line{
-  stroke: white;
-}
-
-.axis path{
-  stroke: white;
-}
-
-.axis text{
-  fill: white;
-}
-
-.income {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 2px;
-}
-.expense {
-  fill: none;
-  stroke: tomato;
-  stroke-width: 2px;
-}
-
-</style>
-<body>
-<script src="https://d3js.org/d3.v3.js"></script>
-<script src="https://d3js.org/d3.v4.js"></script>
-<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-
+---
+layout: graph
+---
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
 
@@ -80,14 +26,13 @@ var svg = d3.select("#my_dataviz")
 
 parseDate = d3.time.format("%Y-%m").parse
 
-d3.json("https://spreadsheets.google.com/feeds/list/1Yp7CPoeeuPLLBhxKRa4SIzQBT_PXXti8uOfKhQfmndY/3/public/values?alt=json", function(meta_result) {
+d3.json("https://spreadsheets.google.com/feeds/list/1Yp7CPoeeuPLLBhxKRa4SIzQBT_PXXti8uOfKhQfmndY/2/public/values?alt=json", function(meta_result) {
   var income_data = [];
-  console.log(meta_result)
   for (var i = 0; i < meta_result.feed.entry.length; i += 1) {
       income_data.push({
           "month": meta_result.feed.entry[i].gsx$month.$t,
-          "income": meta_result.feed.entry[i].gsx$willincome.$t,
-          "expenses": meta_result.feed.entry[i].gsx$willexpenses.$t,
+          "income": meta_result.feed.entry[i].gsx$income.$t,
+          "expenses": meta_result.feed.entry[i].gsx$expenses.$t,
       })
   }
 
@@ -127,15 +72,15 @@ d3.json("https://spreadsheets.google.com/feeds/list/1Yp7CPoeeuPLLBhxKRa4SIzQBT_P
       .attr("x",0 - (height / 2))
       .attr("dy", "1em")
       .style("text-anchor", "middle")
-      .text("Share of Cumulative Income/Expenses");
+      .text("Quarterly Income/Expenses");
 
     // Add Y axis
     var y = d3.scaleLinear()
-      .domain([0, 1])
+      .domain([0, max_income+100])
       .range([ height, 0 ]);
     svg.append("g")
       .attr("class","axis")
-      .call(d3.axisLeft(y).ticks(5).tickFormat(d3.format(".0%")))
+      .call(d3.axisLeft(y).ticks(5))
 
     var size = 20
 
@@ -143,7 +88,7 @@ d3.json("https://spreadsheets.google.com/feeds/list/1Yp7CPoeeuPLLBhxKRa4SIzQBT_P
         .attr("x", width + extra_right/3)
         .attr("y", 10 + 1*(size+5) + (size/2)) // 100 is where the
         .style("fill", "steelblue")
-        .text("Will's Income Share")
+        .text('Income Post-Tax')
         .attr("text-anchor", "left")
         .style("alignment-baseline", "middle")
 
@@ -151,7 +96,7 @@ d3.json("https://spreadsheets.google.com/feeds/list/1Yp7CPoeeuPLLBhxKRa4SIzQBT_P
         .attr("x", width + extra_right/3)
         .attr("y", 10 + 2*(size+5) + (size/2)) // 100 is where the
         .style("fill", "tomato")
-        .text("Will's Expenses Share")
+        .text('Expenses')
         .attr("text-anchor", "left")
         .style("alignment-baseline", "middle")
 
