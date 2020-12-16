@@ -1,1 +1,15 @@
 name: will.stedden.org
+
+social:
+  - name: twitter
+    url: https://twitter.com/bonkerfield
+  - name: linkedin
+    url: https://www.linkedin.com/in/willstedden
+  - name: github
+    url: https://github.com/stedn
+  - name: codepen
+    url: https://codepen.io/stedn/
+  - name: reddit-alien
+    url: https://www.reddit.com/user/bonkerfield
+  - name: mastodon
+    url: https://fosstodon.org/@bonkerfield

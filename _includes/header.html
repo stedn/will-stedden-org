@@ -1,3 +1,9 @@
+<a style="display:none;" class="h-card" rel="me" href="https://will.stedden.org/">Will Stedden</a>
+{% if site.social %}
+  {% for social in site.social %}
+    <a style="display:none;" href="{{ social['url'] }}" rel="me"></a>
+  {% endfor %}
+{% endif %}
 <div class="navigationBar fixed-top">
     <div class="container">
       <nav class="navbar navbar-expand navbar-light bg-light">
