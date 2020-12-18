@@ -5,13 +5,7 @@ layout: default
 <!--Responsive Introduction contained here -->
   <header class="intro" id="intro-link">
     <div class="container">
-      <div class="row text-center">
-        <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 order-1">
-          <img class="img-fluid mx-auto d-block" height="10px;" src="/camping.png" alt="">
-        </div>
-        <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center">
-        <h5>Working on lots of things in parallel. Currently <a href="https://anthem.ai">machine learning in healthcare</a>, <a href="https://worcfoods.com/">a worker-owned robotics cooperative</a>, and <a href="https://viewfoil.bonkerfield.org/">personal online transparency</a>.</h5></div>
-      </div>
+      {% include bio.html %}
       <div class="row text-center">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center">
         <h4><a href="/">←<small style="font-size:14px;">Visual Resumé </small></a>Timeline Resumé <a href="/classic.html"><small style="font-size:14px;">Classic Resumé</small>→</a></h4>
