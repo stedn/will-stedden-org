@@ -5,10 +5,31 @@ layout: default
   <header class="intro" id="intro-link">
     <div class="container">
       {% include bio.html %}
+      <!-- current projects -->
       <div class="row text-center">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center" style="margin-top:25px;">
+          <h4>Current Projects</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>a.ttent.io/n - a short story for our fractured minds </p>" href="https://a.ttent.io/n"><img  src="images/attention.png" style="width:100%"></a>
+        </div>
+        <div class="column">
+          <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>The Co-op Trail - bicycling through the solidarity economy </p>" href="https://cooptrail.png"><img src="images/cooptraillogo.png" style="width:100%"></a>
+        </div>
+        <div class="column">
+          <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>oneth.club - social media designed to unite</p>" href="https://oneth.club"><img src="images/onethlogo.png" style="width:100%"></a>
+        </div>
+        <div class="column">
+          <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>viewfoil - transparent communication ++ </p>" href="https://viewfoil.bonkerfield.org"><img  src="images/viewfoil.png" style="width:100%"></a>
+        </div>
+      </div>
+      <!-- resume -->
+      <div class="row text-center" style="margin-top:50px;">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center">
-          <h4><a href="/timeline.html">←<small style="font-size:14px;">Timeline Resumé </small></a>Visual Resumé <a href="/classic.html"><small style="font-size:14px;">Classic Resumé</small>→</a></h4>
-          <a href="https://bonkerfield.org/2015/01/a-better-linkedin/"><span class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>Displays connections between people I've worked with, <br/> projects I've worked on, and skills required for each project.<br/> Width is scale of project, height is time occupied. <br/> You can click on a project for more details. </p>" >🛈</span></a>
+          <h4>Past Resumé
+          <a href="https://bonkerfield.org/2015/01/a-better-linkedin/"><span class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>Displays connections between people I've worked with, <br/> projects I've worked on, and skills required for each project.<br/> Width is scale of project, height is time occupied. <br/> You can click on a project for more details. </p>" >🛈</span></a></h4>
         </div>
       </div>
     </div>
