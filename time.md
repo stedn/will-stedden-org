@@ -14,7 +14,7 @@ function chart() {
 extra_right = 100
   var margin = {top: 60, right: 100+extra_right, bottom: 50, left: 100},
     width = document.body.clientWidth - margin.left - margin.right,
-    height = 800 - margin.top - margin.bottom;
+    height = 600 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -41,7 +41,7 @@ parseDate = d3.time.format("%Y-%m-%d").parse
       }
       data.push(to_push)
   }
-    max_income = 10
+    max_income = 8
     //////////
     // GENERAL //
     //////////
