@@ -9,333 +9,287 @@ layout: default
       <div class="row text-center">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center">
         <h4><a href="/">←<small style="font-size:14px;">Visual Resumé </small></a>Timeline Resumé <a href="/classic.html"><small style="font-size:14px;">Classic Resumé</small>→</a></h4>
-          <a href="https://bonkerfield.org/2020/05/timeline-streamgraph-google-sheet/"><span class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>Displays concurrent projects I've worked on. <br/> Width indicates how much time I spent on each project. <br/> Time runs vertical with most recent work at the top.</p>" >🛈</span></a>
+          <a href="https://bonkerfield.org/2015/01/a-better-linkedin/"><span class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>Displays connections between people I've worked with, <br/> projects I've worked on, and skills required for each project.<br/> Width is scale of project, height is time occupied. <br/> You can click on a project for more details. </p>" >🛈</span></a>
         </div>
       </div>
     </div>
+    <div class="align-self-center" style="max-width: 800px;margin-left: auto;margin-right: auto;padding-left:5px;padding-right:5px;padding-top:20px;" >
+      <p class="alignleft">People</p>
+      <p class="aligncenter">Projects</p>
+      <p class="alignright">Skills</p>
+    </div>
+    <div id="loading-bar-spinner" class="spinner"><div class="spinner-icon"></div></div>
+
 </header>
-<div id="loading-bar-spinner" class="spinner"><div class="spinner-icon"></div></div>
-<div class="chart" id="chart">
-</div>
+
+
+
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="//d3js.org/d3-scale-chromatic.v0.3.min.js"></script>
+
+<script src="sankey.js"></script>
 <script>
 
-chart();
+var units = "Widgets";
 
-// window.addEventListener("resize", chart);
+// set the dimensions and margins of the graph
+var maxwidth = 800
+var margin = {top: 0, right: 10, bottom: 10, left: 10};
+var width = document.body.clientWidth - margin.left*2 - margin.right*2;
+width = width < maxwidth ? width : maxwidth
+height_factor = 15*width / 800
+var height = document.body.clientHeight*height_factor - margin.top - margin.bottom;
+width_scale = width
+var format_date = d3.timeParse("%m/%d/%y");
 
+// format variables
+var formatNumber = d3.format(",.0f"),    // zero decimal places
+    format = function(d) { return formatNumber(d) + " " + units; },
+    color = d3.scaleOrdinal(d3.schemePastel1);
 
-function chart() {
+// append the svg object to the body of the page
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
 
-  var format = d3.time.format("%m/%d/%y");
+// Set the sankey diagram properties
+var sankey = d3.sankey()
+    .nodeWidth(36)
+    .nodePadding(40)
+    .size([width, height]);
 
-  var margin = {top: 20, right: 40, bottom: 30, left: 30};
-
-  var width = document.body.clientWidth - margin.left - margin.right;
-  var height = document.body.clientHeight*40 - margin.top - margin.bottom;
-
-  var tooltip = d3.select(".chart")
-      .append("div")
-      .attr("class", "remove")
-      .style("position", "absolute")
-      .style("z-index", "20")
-      .style("visibility", "hidden");
-
-  var x = d3.scale.linear()
-      .range([0, width]);
-
-  var y = d3.time.scale()
-      .range([height-10, 0]);
-
-  var yAxis = d3.svg.axis()
-      .scale(y);
-
-  var stack = d3.layout.stack()
-      .offset("silhouette")
-      .values(function(d) { return d.values; })
-      .x(function(d) { return d.date; })
-      .y(function(d) { return d.value; });
-
-  var nest = d3.nest()
-      .key(function(d) { return d.project; });
-
-  var area = d3.svg.area()
-      .interpolate("basis")
-      .y(function(d) { return y(d.date); })
-      .x0(function(d) { return x(d.y0); })
-      .x1(function(d) { return x(d.y0 + d.y); });
-
-  var svg = d3.select(".chart").append("div")
-      .classed("svg-container", true) //container class to make it responsive
-      .append("svg")
-      .attr("preserveAspectRatio", "xMinYMin meet")
-      .attr("viewBox", "0 0 "+width+" " +height)
-      .classed("svg-content-responsive", true)
-      .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-  var url_data = "https://spreadsheets.google.com/feeds/list/1WmkDCeImSR7k5JnNn7HE4ZiDH3j4X-iIarkBrbbPvQ8/1/public/values?alt=json"
-
-  var url_metadata = "https://spreadsheets.google.com/feeds/list/1WmkDCeImSR7k5JnNn7HE4ZiDH3j4X-iIarkBrbbPvQ8/2/public/values?alt=json"
-
-  d3.json(url_metadata, function (meta_result) {
-    var metadata = {};
-    for (var i = 0; i < meta_result.feed.entry.length; i += 1) {
-        proj = meta_result.feed.entry[i].gsx$project.$t
-        metadata[proj] = {
-            "color": meta_result.feed.entry[i].gsx$color.$t,
-            "link": meta_result.feed.entry[i].gsx$link.$t,
-            "order": meta_result.feed.entry[i].gsx$order.$t,
-            "description": meta_result.feed.entry[i].gsx$description.$t
+var path = sankey.link();
+d3.json("https://spreadsheets.google.com/feeds/list/1WmkDCeImSR7k5JnNn7HE4ZiDH3j4X-iIarkBrbbPvQ8/2/public/values?alt=json", function (meta_result) {
+  var metadata = {};
+  for (var i = 0; i < meta_result.feed.entry.length; i += 1) {
+      proj = meta_result.feed.entry[i].gsx$project.$t
+      metadata[proj] = {
+          "color": meta_result.feed.entry[i].gsx$color.$t,
+          "link": meta_result.feed.entry[i].gsx$link.$t,
+          "order": meta_result.feed.entry[i].gsx$order.$t,
+          "description": meta_result.feed.entry[i].gsx$description.$t
+      }
+  }
+  d3.json("https://spreadsheets.google.com/feeds/list/1WmkDCeImSR7k5JnNn7HE4ZiDH3j4X-iIarkBrbbPvQ8/1/public/values?alt=json", function (agg_result) {
+    unique_projects = {};
+    for (var i = 0; i < agg_result.feed.entry.length; i += 1) {
+      valval = agg_result.feed.entry[i].gsx$value.$t;
+      project_val = agg_result.feed.entry[i].gsx$project.$t;
+      date_val = agg_result.feed.entry[i].gsx$date.$t;
+      date_val = format_date(date_val);
+      if (!(project_val in unique_projects)){
+        unique_projects[project_val] = {"months":0, "val":0, "date": format_date('01/01/01'), "min_date": format_date('01/01/50')};
+      }
+      if(parseFloat(valval)>0.025){
+        unique_projects[project_val]["val"]+=parseFloat(valval);
+        unique_projects[project_val]["months"]+=1;
+        if (date_val > unique_projects[project_val]["date"]){
+          unique_projects[project_val]["date"] = date_val
         }
+        if (date_val < unique_projects[project_val]["min_date"]){
+          unique_projects[project_val]["min_date"] = date_val
+        }
+      }
+    }
+    max_date = format_date('01/01/01')
+    min_date = format_date('01/01/50')
+    for (var k in unique_projects){
+      date_val = unique_projects[k]["date"]
+      if (date_val > max_date){
+        max_date = date_val
+      }
+      if (date_val < min_date){
+        min_date = date_val
+      }
     }
 
-    d3.json(url_data, function (result) {
-      var data = [];
-      all_dates = {};
-      unique_projects = {};
+    timescaler = d3.scaleTime().domain([min_date, max_date]).range([1,0])
+// load the data
+    d3.json("https://spreadsheets.google.com/feeds/list/1WmkDCeImSR7k5JnNn7HE4ZiDH3j4X-iIarkBrbbPvQ8/3/public/values?alt=json", function(result) {
+      data = []
       for (var i = 0; i < result.feed.entry.length; i += 1) {
-          date_val = result.feed.entry[i].gsx$date.$t;
-          project_val = result.feed.entry[i].gsx$project.$t;
-          data.push({
-              "date": date_val,
-              "value": result.feed.entry[i].gsx$value.$t,
-              "project": project_val
-          });
-          if (!(date_val in all_dates)){
-            all_dates[date_val] = true;
+              data.push({
+                  "source": result.feed.entry[i].gsx$source.$t,
+                  "target": result.feed.entry[i].gsx$target.$t
+              });
           }
-          if (!(project_val in unique_projects)){
-            unique_projects[project_val] = {};
-          }
-          unique_projects[project_val][date_val]=true;
-      }
-
-      for (p in unique_projects){
-        for (dt in all_dates) {
-          if (!(dt in unique_projects[p])){
-            data.push({
-              "date": dt,
-              "value": 0,
-              "project": p
-            });
-          }
-        }
-      }
 
 
-      data.forEach(function(d) {
-        d.date = format.parse(d.date);
-        d.value = +d.value;
-        if (d.project in metadata){
-          d.color = metadata[d.project]['color']
-          d.link = metadata[d.project]['link']
-          d.order = metadata[d.project]['order']
-          d.description = metadata[d.project]['description']
-        } else {
-          d.color = '#111111'
-          d.link = '#'
-          d.order = 1
-          d.description = ''
-        }
+      //set up graph in same style as original example but empty
+      graph = {"nodes" : [], "links" : []};
+
+      data.forEach(function (d) {
+        graph.nodes.push({ "name": d.source});
+        graph.nodes.push({ "name": d.target});
+        graph.links.push({ "source": d.source,
+                           "target": d.target,
+                           "value": +1 });
+       });
+
+      // return only the distinct / unique nodes
+      graph.nodes = d3.keys(d3.nest()
+        .key(function (d) { return d.name; })
+        .object(graph.nodes));
+
+      // loop through each link replacing the text with its index from node
+      graph.links.forEach(function (d, i) {
+        graph.links[i].source = graph.nodes.indexOf(graph.links[i].source);
+        graph.links[i].target = graph.nodes.indexOf(graph.links[i].target);
       });
 
-      function compare( a, b ) {
-        if ( b.order > a.order ){
-          return -1;
+      // now loop through each nodes to make nodes an array of objects
+      // rather than an array of strings
+      graph.nodes.forEach(function (d, i) {
+        thecolor = color(d.replace(/ .*/, ""))
+        theorder = 2
+        theheight =  1;
+        thewidth = 1;
+        thedate = timescaler(max_date)
+        the_date_range = ""
+        thelink = ""
+        if (d in metadata){
+          thecolor =  metadata[d]['color'];
+          theorder = metadata[d]['order'];
+          thelink = metadata[d]['link']
         }
-        if ( a.order > b.order ){
-          return 1;
+        if (d in unique_projects){
+          theheight =  unique_projects[d]['months'];
+          thewidth =  unique_projects[d]['val'];
+          thedate =  timescaler(unique_projects[d]['date']);
+          if(unique_projects[d]['min_date'].getYear()!=unique_projects[d]['date'].getYear()){
+            the_date_range = (1900+unique_projects[d]['min_date'].getYear()) + "-" + (1900+unique_projects[d]['date'].getYear());
+          }else{
+            the_date_range = (1900+unique_projects[d]['min_date'].getYear())
+          }
         }
-        if ( b.date > a.date ){
-          return -1;
-        }
-        if ( a.date > b.date ){
-          return 1;
-        }
-        return 0;
-      }
+        graph.nodes[i] = { "name": d, "color": thecolor, "order": theorder, "myheight": theheight, "mywidth": thewidth/theheight, "mydate": thedate, "link": thelink, "daterange": the_date_range  };
+      });
 
-      data.sort(compare);
+      sankey
+          .nodes(graph.nodes)
+          .links(graph.links)
+          .layout(32);
 
-      var layers = stack(nest.entries(data));
-      console.log((layers[0].values))
+      left_bound = width / 8
+      right_bound = 7 * width / 8
 
-      y.domain(d3.extent(data, function(d) { return d.date; }));
-      x.domain([0, 1.05*d3.max(data, function(d) { return d.y0 + d.y; })]);
+      graph.nodes.forEach(function(d) {
+        d.y = d.x < right_bound && d.x > left_bound ? d.mydate*2700*height_factor/18 : d.y
+        d.dy = d.x < right_bound && d.x > left_bound ? d.myheight*20*height_factor/18 : d.dy
+        d.dx = d.x < right_bound && d.x > left_bound ? d.mywidth*width_scale/4.5 : d.dx
+        d.x = d.x + width_scale/10*(d.x < right_bound && d.x > left_bound ? 7*(0.4-d.mywidth) : 0)
+        // d.dx = d.dx*(1+(d.x < 3* width / 4 && d.x >  width / 4 ? d.order : 0))
+      });
+      sankey.relayout();
+      // add in the links
+      var link = svg.append("g").selectAll(".link")
+          .data(graph.links)
+        .enter().append("path")
+          .attr("class", "link")
+          .attr("d", path)
+          .style('opacity', 0.5)
+          .style("stroke-width", 2)
+          .sort(function(a, b) { return b.dy - a.dy; });
 
-      svg.selectAll(".layer")
-          .data(layers)
-        .enter().append("a")
-          .attr("xlink:href", function(d) { return d.values[0].link; })
-          .append("path")
-          .attr("class", "layer")
-          .attr("opacity", 0.8)
-          .attr("d", function(d) { return area(d.values); })
-          .style("fill", function(d) { return d.values[0].color; });
+      // add the link titles
+      link.append("title")
+            .text(function(d) {
+            return d.source.name + " → " +
+                    d.target.name; });
 
-      svg.selectAll(".layer").transition()
-        .duration(1)
-        .attr("opacity", 0.8);
+      // add in the nodes
+      var node = svg.append("g").selectAll(".node")
+          .data(graph.nodes)
+        .enter().append("g")
+          .attr("class", "node")
+          .attr("transform", function(d) {
+          return "translate(" + d.x + "," + d.y + ")"; });
 
-      prefer_x_width = 100
-      min_x_width = 50
-      x_width_step = 5
+      // add the rectangles for the nodes
+      noderects = node.append("a")
+          .attr("xlink:href", function(d) { return d.link; })
+          .append("rect")
+          .attr("height", function(d) { return d.dy; })
+          .attr("width", function(d) { return d.dx; })
+          .style("fill", function(d) { return d.color; })
+          .style("stroke", function(d) {
+          return d3.rgb(d.color).darker(2); });
 
-      function transform_func(d){
-        txt_len = d.values[0].project.length
-        for (width_cutoff = prefer_x_width; width_cutoff > min_x_width; width_cutoff-=x_width_step){
-          min_y = 100000
-          min_xl = 0
-          min_xr = 0
-          for (i=0; i < d.values.length; i++){
-            y_val = y(d.values[i].date)
-            xl_val = x(d.values[i].y0)
-            xr_val = x(d.values[i].y0+d.values[i].y)
-            if ((xr_val-xl_val)>width_cutoff && y_val < min_y ){
-              min_y = y_val
-              min_xl = xl_val
-              min_xr = xr_val
+      node
+        .on('mouseover', function (d) {
+          // Highlight the nodes: every node is green except of him
+          tohilight = []
+          for (var l in graph.links){
+            link_d = graph.links[l]
+            if (link_d.target.name === d.name){
+              tohilight.push(link_d.source.name)
+            }
+            if (link_d.source.name === d.name){
+              tohilight.push(link_d.target.name)
             }
           }
-          min_x = (min_xl + min_xr)/2.
-          if (min_x >= width_cutoff) {
-            scale = (min_xr-min_xl)/Math.sqrt(txt_len)/50
-            return "translate("+min_x+","+(min_y-10)+") scale("+scale+") translate(-"+(3*txt_len)+",30)"
-          }
-        }
-      }
-      function visible_func(d){
-        min_y = 100000
-        min_xl = 0
-        min_xr = 0
-        txt_len = d.values[0].project.length
-        for (i=0; i < d.values.length; i++){
-          y_val = y(d.values[i].date)
-          xl_val = x(d.values[i].y0)
-          xr_val = x(d.values[i].y0+d.values[i].y)
-          if ((xr_val-xl_val)>min_x_width && y_val < min_y ){
-            min_y = y_val
-            min_xl = xl_val
-            min_xr = xr_val
-          }
-        }
-        return (min_xr-min_xl) < min_x_width+x_width_step ? 'hidden' : 'visible'
-      }
-      svg.selectAll("text")
-          .data(layers)
-        .enter().append("text")
-        .attr('class','nohover')
-        .attr("fill", '#333')
-        .attr("visibility", visible_func)
-        .attr("transform", transform_func)
-        .text((d) => d.values[0].project);
-
-      max_date = d3.max(data, function(d) { return d.date; });
-      min_date = d3.min(data, function(d) { return d.date; });
-      var dateArray = d3.time.scale()
-                .domain([new Date(min_date.getFullYear(), 12, 1), new Date(max_date.getFullYear()-1, 12, 1)])
-                .ticks(d3.time.years, 1);
-      dateArray.push(max_date)
-      const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-      ];
-      yAxis = yAxis.tickValues(dateArray)
-        .tickFormat(d => ('<- ' + ((d==max_date) ? (monthNames[d.getMonth()]+', '+d.getFullYear()) : d.getFullYear()-1)));
-
-      svg.append("g")
-          .attr("class", "yaxis")
-          .call(yAxis.orient("left"))
-          .selectAll("text")
-            .style("text-anchor", "end")
-            .style("color", "#999")
-            .attr("dx", ".4em")
-            .attr("dy", "-.6em")
-            .attr("transform", "rotate(-90)" );
-
-      svg.selectAll(".layer")
-        .on("mouseover", function(d, i) {
-          svg.selectAll(".layer").transition()
-            .duration(100)
-            .attr("opacity", function(d, j) {
-              return j != i ? 0.8 : 1;
-        })})
-        .on("mousemove", function(d, i) {
-
-          mouse = d3.mouse(document.body);
-          mousex = mouse[0];
-          mousey = mouse[1];
-          f = d.values[0]
-          var date = f.date
-          txt_width = f.description.length
-          tooltip
-            .style("left", (mousex-txt_width*4) +"px")
-            .style("top", (mousey+100) +"px")
-            .html("<div class='key'>" + f.project + "</div><div class='desc'>"+f.description+"</div>")
-            .style("visibility", "visible");
+          node.select('text').style('opacity', 0.1)
+          node.select('rect').style('opacity', function(d){ return tohilight.includes(d.name) ? 1 : 0.1})
+          node.select('text').style('opacity', function(d){ return tohilight.includes(d.name) ? 1 : 0.1})
+          d3.select(this).select('rect').style('opacity', 1)
+          d3.select(this).select('text').style('opacity', 1)
+          // Highlight the connections
+          link
+            .style('opacity', function (link_d) { return link_d.source.name === d.name || link_d.target.name === d.name ? 1 : 0.2;})
         })
-        .on("mouseout", function(d, i) {
-          svg.selectAll(".layer").transition()
-            .duration(100)
-            .attr("opacity", 0.8);
-          tooltip.style("visibility", "hidden");
-        });
+        .on('mouseout', function (d) {
+          node.select('rect').style('opacity', 0.9)
+          node.select('text').style('opacity', 0.5)
+          link.style('opacity', 0.5)
+        })
 
-        var gradient = svg.append("defs")
-          .append("linearGradient")
-          .attr("id", "gradient")
-          .attr("x1", "100%")
-          .attr("y1", "100%")
-          .attr("x2", "100%")
-          .attr("y2", "0%")
-          .attr("spreadMethod", "pad");
+      // add in the title for the nodes
+      font_size = "12px"
+      if(width_scale<600){
+        font_size = "10px"
+      }
+      node.append("text")
+          .attr("font-size", font_size)
+          .attr("x", function(d) { return sankey.nodeWidth(); })
+          .attr("y", function(d) { return 15+ d.dy ; })
+          .attr("text-anchor", "end")
+          .attr("transform", null)
+          .text(function(d) { return d.name; })
+          .attr("fill", "gray")
+          .attr("opacity", "0.5")
+        .filter(function(d) { return d.x < right_bound; })
+          .attr("fill", "black")
+          .attr("x", -5)
+          .attr("y", 15)
+          .attr("text-anchor", "end")
+          .attr("transform", "rotate(-90)")
+        .filter(function(d) { return d.x <  left_bound; })
+          .attr("fill", "gray")
+          .attr("y", function(d) { return 15+ d.dy ; })
+          .attr("x", 0)
+          .attr("transform", null)
+          .attr("text-anchor", "start");
+      node.append("text")
+        .filter(function(d) { return d.dx > 30; })
+        .filter(function(d) { return d.x < right_bound; })
+        .filter(function(d) { return d.x >  left_bound; })
+          .attr("font-size", font_size)
+          .text(function(d) { return d.daterange; })
+          .attr("opacity", "0.1")
+          .attr("fill", "black")
+          .attr("x", -5)
+          .attr("y", 30)
+          .attr("text-anchor", "end")
+          .attr("transform", "rotate(-90)")
 
-        gradient.append("stop")
-          .attr("offset", "0%")
-          .attr("stop-color", "#000")
-          .attr("stop-opacity", 1);
-
-        gradient.append("stop")
-          .attr("offset", "100%")
-          .attr("stop-color", "#000")
-          .attr("stop-opacity", 0);
-
-        svg.append("rect")
-          .attr('class','nohover')
-          .attr("width", 2*width)
-          .attr("height", height/3)
-          .attr("x", -width/2)
-          .attr("y", 2*height/3)
-          .style("fill", "url(#gradient)");
-        document.getElementById("loading-bar-spinner").style.display = "none";
-        // Add 'curtain' rectangle to hide entire graph
-        var curtain = svg.append('rect')
-         .attr('x', -1 * width)
-         .attr('y', -1 * height)
-         .attr('height', height)
-         .attr('width', width)
-         .attr('class', 'curtain')
-         .attr('transform', 'rotate(180)')
-         .style('fill', '#222')
-
-        // Create a shared transition for anything we're animating
-        var t = svg.transition()
-         .delay(100)
-         .duration(3000)
-         .ease('linear')
-         .each('end', function() {
-           d3.select('line.guide')
-             .transition()
-             .style('opacity', 0)
-             .remove()
-         });
-
-        t.select('rect.curtain')
-          .attr('height', 0);
-        t.select('line.guide')
-          .attr('transform', 'translate(' + height + ', 0)');
+      document.getElementById("loading-bar-spinner").style.display = "none";
 
     });
 
   });
-}
+});
 </script>
