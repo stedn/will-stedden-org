@@ -22,7 +22,7 @@ layout: default
           <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>oneth.club - social media designed to unite</p>" href="https://oneth.club"><img src="images/onethlogo.png" style="width:100%"></a>
         </div>
         <div class="column">
-          <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>viewfoil - transparent communication ++ </p>" href="https://viewfoil.bonkerfield.org"><img  src="images/viewfoil.png" style="width:100%"></a>
+          <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>Alternative Historilogical Musicology - fiction storytelling with music </p>" href="https://prof.bonkerfield.org"><img  src="images/profbonker.png" style="width:100%"></a>
         </div>
       </div>
       <!-- resume -->
