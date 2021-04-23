@@ -19,7 +19,7 @@ layout: default
           <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>The Co-op Trail - bicycling through the solidarity economy </p>" href="https://cooptrail.org"><img src="images/cooptraillogo.png" style="width:100%"></a>
         </div>
         <div class="column">
-          <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>oneth.club - social media designed to unite</p>" href="https://oneth.club"><img src="images/onethlogo.png" style="width:100%"></a>
+          <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>The Leftwardist: make the world more equitable, any little bit at a time</p>" href="https://leftwardist.substack.com"><img src="images/leftwardist.png" style="width:100%"></a>
         </div>
         <div class="column">
           <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>Alternative Historilogical Musicology - fiction storytelling with music </p>" href="https://prof.bonkerfield.org"><img  src="images/profbonker.png" style="width:100%"></a>
