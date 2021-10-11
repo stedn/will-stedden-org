@@ -11,10 +11,7 @@ layout: default
           <h4>Current Projects</h4>
         </div>
       </div>
-      <div class="row">
-        <div class="column">
-          <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>a.ttent.io/n - a short story for our fractured minds </p>" href="https://a.ttent.io/n"><img  src="images/attention.png" style="width:100%"></a>
-        </div>
+      <div class="row" style="margin: 0 auto;max-width:600px;">
         <div class="column">
           <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>The Co-op Trail - bicycling through the solidarity economy </p>" href="https://cooptrail.org"><img src="images/cooptraillogo.png" style="width:100%"></a>
         </div>
@@ -28,7 +25,7 @@ layout: default
       <!-- resume -->
       <div class="row text-center" style="margin-top:50px;">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center">
-          <h4>Past Resumé
+          <h4>Project Timeline
           <a href="https://bonkerfield.org/2020/05/timeline-streamgraph-google-sheet/"><span class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>Displays concurrent projects I've worked on. <br/> Width indicates how much time I spent on each project. <br/> Time runs vertical with most recent work at the top.</p>" >🛈</span></a></h4>
         </div>
       </div>
@@ -97,32 +94,44 @@ function chart() {
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  var url_data = "https://spreadsheets.google.com/feeds/list/1WmkDCeImSR7k5JnNn7HE4ZiDH3j4X-iIarkBrbbPvQ8/1/public/values?alt=json"
 
-  var url_metadata = "https://spreadsheets.google.com/feeds/list/1WmkDCeImSR7k5JnNn7HE4ZiDH3j4X-iIarkBrbbPvQ8/2/public/values?alt=json"
+fetch("https://docs.google.com/spreadsheets/d/1WmkDCeImSR7k5JnNn7HE4ZiDH3j4X-iIarkBrbbPvQ8/gviz/tq?tqx=out:json&sheet=links")
+    .then(res => res.text())
+    .then(text => {
+    meta_result = JSON.parse(text.substr(47).slice(0, -2))
 
-  d3.json(url_metadata, function (meta_result) {
+    var income_data = [];
+    for (var i = 0; i < meta_result.table.rows.length; i += 1) {
+        income_data.push({
+            "month": meta_result.table.rows[i].c[0].f,
+            "income": meta_result.table.rows[i].c[2].v,
+            "expenses": meta_result.table.rows[i].c[1].v,
+        })
+    }
     var metadata = {};
-    for (var i = 0; i < meta_result.feed.entry.length; i += 1) {
-        proj = meta_result.feed.entry[i].gsx$project.$t
+    for (var i = 0; i < meta_result.table.rows.length; i += 1) {
+        proj = meta_result.table.rows[i].c[0].v
         metadata[proj] = {
-            "color": meta_result.feed.entry[i].gsx$color.$t,
-            "link": meta_result.feed.entry[i].gsx$link.$t,
-            "order": meta_result.feed.entry[i].gsx$order.$t,
-            "description": meta_result.feed.entry[i].gsx$description.$t
+            "color": meta_result.table.rows[i].c[1].v,
+            "link": meta_result.table.rows[i].c[2].v,
+            "order": meta_result.table.rows[i].c[3].v,
+            "description": meta_result.table.rows[i].c[4].v
         }
     }
 
-    d3.json(url_data, function (result) {
+fetch("https://docs.google.com/spreadsheets/d/1WmkDCeImSR7k5JnNn7HE4ZiDH3j4X-iIarkBrbbPvQ8/gviz/tq?tqx=out:json&sheet=history")
+    .then(res => res.text())
+    .then(text => {
+      result = JSON.parse(text.substr(47).slice(0, -2));
       var data = [];
       all_dates = {};
       unique_projects = {};
-      for (var i = 0; i < result.feed.entry.length; i += 1) {
-          date_val = result.feed.entry[i].gsx$date.$t;
-          project_val = result.feed.entry[i].gsx$project.$t;
+      for (var i = 0; i < result.table.rows.length; i += 1) {
+          date_val = result.table.rows[i].c[2].f;
+          project_val = result.table.rows[i].c[0].v;
           data.push({
               "date": date_val,
-              "value": result.feed.entry[i].gsx$value.$t,
+              "value": result.table.rows[i].c[1].v,
               "project": project_val
           });
           if (!(date_val in all_dates)){
@@ -133,6 +142,7 @@ function chart() {
           }
           unique_projects[project_val][date_val]=true;
       }
+      console.log(data)
 
       for (p in unique_projects){
         for (dt in all_dates) {

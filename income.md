@@ -26,13 +26,18 @@ var svg = d3.select("#my_dataviz")
 
 parseDate = d3.time.format("%Y-%m").parse
 
-d3.json("https://spreadsheets.google.com/feeds/list/1Yp7CPoeeuPLLBhxKRa4SIzQBT_PXXti8uOfKhQfmndY/2/public/values?alt=json", function(meta_result) {
+
+fetch("https://docs.google.com/spreadsheets/d/1Yp7CPoeeuPLLBhxKRa4SIzQBT_PXXti8uOfKhQfmndY/gviz/tq?tqx=out:json&sheet=Income")
+    .then(res => res.text())
+    .then(text => {
+    meta_result = JSON.parse(text.substr(47).slice(0, -2))
+
   var income_data = [];
-  for (var i = 0; i < meta_result.feed.entry.length; i += 1) {
+  for (var i = 0; i < meta_result.table.rows.length; i += 1) {
       income_data.push({
-          "month": meta_result.feed.entry[i].gsx$month.$t,
-          "income": meta_result.feed.entry[i].gsx$income.$t,
-          "expenses": meta_result.feed.entry[i].gsx$expenses.$t,
+          "month": meta_result.table.rows[i].c[0].f,
+          "income": meta_result.table.rows[i].c[2].v,
+          "expenses": meta_result.table.rows[i].c[1].v,
       })
   }
 

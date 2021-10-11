@@ -27,20 +27,28 @@ var svg = d3.select("#my_dataviz")
 
 parseDate = d3.time.format("%Y-%m").parse
 
-// Parse the Data
-  d3.json("https://spreadsheets.google.com/feeds/list/1Yp7CPoeeuPLLBhxKRa4SIzQBT_PXXti8uOfKhQfmndY/1/public/values?alt=json", function(meta_result) {
+fetch("https://docs.google.com/spreadsheets/d/1Yp7CPoeeuPLLBhxKRa4SIzQBT_PXXti8uOfKhQfmndY/gviz/tq?tqx=out:json")
+    .then(res => res.text())
+    .then(text => {
+    meta_result = JSON.parse(text.substr(47).slice(0, -2))
+
+    keys = []
+    for (var i = 0; i < 14; i += 1){
+      keys.push(meta_result.table.cols[i].label)
+    }
     var data = [];
-    for (var i = 0; i < meta_result.feed.entry.length; i += 1) {
+    for (var i = 0; i < meta_result.table.rows.length; i += 1) {
       to_push = {};
-      keys = [];
-      for (k in meta_result.feed.entry[i]){
-        if (k.startsWith('gsx')){
-          keys.push(k.substr(4))
-          to_push[k.substr(4)]=meta_result.feed.entry[i][k].$t
+      for (var j = 0; j < 14; j += 1){
+        if (j == 0){
+          to_push[keys[j]]=meta_result.table.rows[i].c[j].f
+        } else{
+          to_push[keys[j]]=meta_result.table.rows[i].c[j].v
         }
       }
       data.push(to_push)
-  }
+    }
+
     max_income = 20000
     //////////
     // GENERAL //
@@ -147,17 +155,17 @@ parseDate = d3.time.format("%Y-%m").parse
         .attr("class", "brush")
         .call(brush);
 
-  var valueline = d3.line()
-      .x(function(d) { return x(d.month); })
-      .y(function(d) { return y(d.income); });
+    var valueline = d3.line()
+        .x(function(d) { return x(d.month); })
+        .y(function(d) { return y(d.income); });
 
-  var incomeline = svg.append('g')
-      .attr("clip-path", "url(#clip)")
+    var incomeline = svg.append('g')
+        .attr("clip-path", "url(#clip)")
 
-  // incomeline.append("path")
-  //   .data([income_data])
-  //   .attr("class", "line")
-  //   .attr("d", valueline);
+    // incomeline.append("path")
+    //   .data([income_data])
+    //   .attr("class", "line")
+    //   .attr("d", valueline);
 
     var idleTimeout
     function idled() { idleTimeout = null; }
