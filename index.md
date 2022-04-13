@@ -13,13 +13,13 @@ layout: default
       </div>
       <div class="row" style="margin: 0 auto;max-width:600px;">
         <div class="column">
-          <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>The Co-op Trail - bicycling through the solidarity economy </p>" href="https://cooptrail.org"><img src="images/cooptraillogo.png" style="width:100%"></a>
+          <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>Solarpunk Travel Cooperative - reimagining the future of travel</p>" href="https://trailcoop.org"><img src="images/solarpunk_travel.png" style="width:100%"></a>
         </div>
         <div class="column">
-          <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>The Leftwardist: make the world more equitable, any little bit at a time</p>" href="https://leftwardist.substack.com"><img src="images/leftwardist.png" style="width:100%"></a>
+          <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>solarpunk.blue - to imagine a more equitable and sustainable world</p>" href="https://solarpunk.blue"><img src="images/solarpunk_blue_logo.jpeg" style="width:100%"></a>
         </div>
         <div class="column">
-          <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>Alternative Historilogical Musicology - fiction storytelling with music </p>" href="https://prof.bonkerfield.org"><img  src="images/profbonker.png" style="width:100%"></a>
+          <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>Walkable - a board game about tranforming our cities and towns for a better future</p>" href="#"><img  src="images/walkable.png" style="width:100%"></a>
         </div>
       </div>
       <!-- resume -->
