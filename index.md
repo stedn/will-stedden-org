@@ -22,7 +22,7 @@ layout: default
           <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>Walkable - a board game about tranforming our cities and towns for a better future</p>" href="#"><img  src="images/walkable.png" style="width:100%"></a>
         </div> -->
         <div class="column">
-          <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>Uprising Chess - chess where the pawns rise up</p>" href="#"><img  src="images/uprisingchess.png" style="width:100%"></a>
+          <a class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>Uprising Chess - chess where the pawns rise up</p>" href="https://uprisingchess.web.app"><img  src="images/uprisingchess.png" style="width:100%"></a>
         </div>
       </div>
       <!-- resume -->
