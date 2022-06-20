@@ -282,15 +282,36 @@ body {
 
 /* Create four equal columns that sits next to each other */
 .column {
-    -ms-flex: 33%; /* IE10 */
-    flex: 33%;
-    max-width: 33%;
+    -ms-flex: 25%; /* IE10 */
+    flex: 25%;
+    max-width: 25%;
     padding: 0 4px;
+}
+
+.column2 {
+    -ms-flex: 49%; /* IE10 */
+    flex: 49%;
+    max-width: 49%;
+    padding: 0 4px;
+}
+
+.textover {
+    position: relative;
+    text-align: center;
+    height:100%;
+}
+
+.centered {
+  position: absolute;
+  top:16px;
+  left:50%;
+  transform: translate(-50%,0);
+  background-color:rgba(0,0,0,0.8);
+  padding:2px;
 }
 
 .column img {
     margin-top: 8px;
-    vertical-align: middle;
 }
 
 /* Responsive layout - makes a two column-layout instead of four columns */
