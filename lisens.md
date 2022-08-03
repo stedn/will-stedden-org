@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: footerless
 ---
 <!--Responsive Introduction contained here -->
   <header class="intro" id="intro-link">
