@@ -40,7 +40,7 @@ function chart() {
   var margin = {top: 20, right: 40, bottom: 30, left: 30};
 
   var width = document.body.clientWidth - margin.left - margin.right;
-  var height = document.body.clientHeight*20 - margin.top - margin.bottom;
+  var height = document.body.clientHeight*15 - margin.top - margin.bottom;
 
   var tooltip = d3.select(".chart")
       .append("div")
