@@ -122,29 +122,45 @@
     left: 0;
 }
 
-body {
+html, body {
   background: #222; /* Old browsers */
   font-family: 'Exo', sans-serif;
   text-align: center;
   font-weight: 700;
   color: #999;
+  height: 100%;
+  margin: 0;
 }
 .navigationBar, .navbar-light, .bg-light{
   background-color: #999 !important;
   color: #222;
 }
 
+.bigwrapper {
+  min-height: 100%;
+}
+.footer {
+  height: 50px;
+  margin-top: -50px;
+}
+
 .intro {
+  min-height: 100%;
   margin: 5em 0 0 0;
-  padding: .2em inherit;
+  padding: .2em 0 -10em 0;
 }
 
 #mypic {
-  max-width: 6em;
+  max-width: 20em;
   margin: .75em 0 .75em 0;
   height: auto;
   border: .1em solid #212830;
   border-radius: 50%;
+}
+
+#lisens{
+  height: 5em;
+  margin-top: -5em;
 }
 
 .yaxis {
@@ -156,8 +172,20 @@ body {
 
 .key {
   margin: 0;
-  padding: 0;
-  color:#222;
+  padding: 0 5px;
+  color:#111;
+  background-color: #CCC;
+  opacity:0.8;
+  border-radius: 10px 10px 0 0;
+}
+
+.desc {
+  margin: 0;
+  padding: 0 5px;
+  color:#444;
+  opacity:0.8;
+  background-color: #CCC;
+  border-radius: 0 0 10px 10px;
 }
 
 

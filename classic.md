@@ -4,7 +4,6 @@ layout: default
 <!--Responsive Introduction contained here -->
   <header class="intro" id="intro-link">
     <div class="container">
-      {% include bio.html %}
       <div class="row text-center">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center">
           <h4><a href="/">←<small style="font-size:14px;">Visual Resumé </small></a>Classic Resumé <a href="/timeline.html"><small style="font-size:14px;">Timeline Resumé</small>→</a></h4>
