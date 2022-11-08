@@ -12,7 +12,7 @@ layout: default
           <h5>Hi! On this site you can find out more than you'd ever want to know about me, Will Stedden. I'm a data scientist, tinkerer, environmentalist, uncle, and amateur scifi writer.  </h5>
           <h6>I live in <a href="https://www.madisonbikes.org/2020/06/madison-ranked-second-best-us-biking-city/">Madison</a>, Wisconsin. My past career has brought me to <a href="https://munrolab.uchicago.edu/events/">biophysical research</a>, a <a href="https://color.com">genomics startup</a>, and an <a href="https://www.anthem.com/employer/the-benefits-guide/collaborative-expertise-to-drive-the-future-of-ai-in-healthcare">AI research team</a> in a large healthcare company. In my personal time, I'm working on <a href="https://solarpunktravel.org/">starting a sustainable travel cooperative</a> and <a href="https://solarpunk.blue">writing prefigurative science fiction</a>.</h6>
           <br/>
-          <p>If you'd like to get in touch you can find me on <a href="https://twitter.com/bonkerfield">twitter</a>, <a href="https://linkedin.com/in/willstedden">linkedin</a>, <a href="https://github.com/stedn">github</a> or at <a href="#">will.stedden@gmail.com</a>.</p>
+          <p>If you'd like to get in touch you can find me on <a href="https://fosstodon.org/@bonkerfield">mastodon</a>, <a href="https://linkedin.com/in/willstedden">linkedin</a>, <a href="https://github.com/stedn">github</a> or at <a href="#">will.stedden@gmail.com</a>.</p>
         </div>
       </div>
     </div>
