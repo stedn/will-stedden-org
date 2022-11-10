@@ -46,7 +46,7 @@ layout: default
         <div class="column textover">
           <a class="mytooltip" tlite="se" target="_blank" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>alternative rules of chess where the pawns rise up, complete with functional AI</p>" href="https://uprisingchess.web.app"><img src="images/uprisingchess.png" style="width:100%"></a>
           <a tlite="se" target="_blank" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>alternative rules of chess where the pawns rise up, complete with functional AI</p>" href="https://uprisingchess.web.app"><p class="centered">uprising chess</p></a>
-          <p style="text-align:right;font-size:0.9em;font-weight:400;font-style:italic;"><a target="_blank" href="https://uprisingchess.web.app">game</a>, <a target="_blank" href="https://solarpunk.blue/commentary/2021/10/09/uprising-chess.html">writeup</a></p>
+          <p style="text-align:right;font-size:0.9em;font-weight:400;font-style:italic;"><a target="_blank" href="https://uprisingchess.web.app">game</a>, <a target="_blank" href="https://bonkerfield.org/2021/10/uprising-chess.html">writeup</a></p>
         </div>
         <div class="column textover">
           <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>physical model of embryonic cell shape change</p>" href="https://bonkerfield.org/2017/08/theseus-and-cell-phd-dissertation-story/"><img src="images/contract.gif" style="width:100%"></a>
@@ -106,7 +106,7 @@ layout: default
         <div class="column2 textover">
           <a class="mytooltip" tlite="se" target="_blank" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>alternative rules of chess where the pawns rise up, complete with functional AI</p>" href="https://uprisingchess.web.app"><img src="images/uprisingchess.png" style="width:100%"></a>
           <a tlite="se" target="_blank" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>alternative rules of chess where the pawns rise up, complete with functional AI</p>" href="https://uprisingchess.web.app"><p class="centered">uprising chess</p></a>
-          <p style="text-align:right;font-size:0.9em;font-weight:400;font-style:italic;"><a target="_blank" href="https://uprisingchess.web.app">game</a>, <a target="_blank" href="https://solarpunk.blue/commentary/2021/10/09/uprising-chess.html">writeup</a></p>
+          <p style="text-align:right;font-size:0.9em;font-weight:400;font-style:italic;"><a target="_blank" href="https://uprisingchess.web.app">game</a>, <a target="_blank" href="https://bonkerfield.org/2021/10/uprising-chess.html">writeup</a></p>
         </div>
       </div>
       <div class="row" style="margin: 0 auto;max-width:800px;">
