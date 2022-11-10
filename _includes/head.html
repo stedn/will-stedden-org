@@ -204,6 +204,7 @@ html, body {
   .intro h5 {
     padding: 1.35em 0 0 0;
   }
+
 }
 
 
@@ -342,6 +343,14 @@ html, body {
     margin-top: 8px;
 }
 
+.subtext{
+  display: none;
+}
+
+.maintext {
+  display:block;
+}
+
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 800px) {
     .column {
@@ -358,6 +367,55 @@ html, body {
         flex: 100%;
         max-width: 100%;
     }
+}
+
+  .navbarSimple{
+    display:none;
+  }
+  .highlightMobile {
+    display:none;
+  }
+  .highlightDesktop {
+    display:block;
+  }
+  .cvDesktop {
+    display:block;
+  }
+  .cvMobile {
+    display:none;
+  }
+
+
+@media screen and (max-width: 600px) {
+  .maintext {
+    display: none;
+  }
+  .subtext {
+    display: block;
+  }
+
+  .navbarExtra{
+    display:none;
+  }
+  .navbarSimple{
+    display:block;
+  }
+
+  .highlightDesktop {
+    display:none;
+  }
+
+  .highlightMobile {
+    display:block;
+  }
+
+  .cvDesktop {
+    display:none;
+  }
+
+  .cvMobile {
+    display:block;
+  }
 }
 
 </style>

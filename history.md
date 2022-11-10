@@ -5,8 +5,11 @@ layout: footerless
   <header class="intro" id="intro-link">
     <div class="container" style="max-width:800px;">
       <div class="row text-center">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center cvDesktop">
           <h6>Below is a visualization of the major projects I've worked on through my career. The graph is an attempt to display the myriad parallel activities going on concurrently across my professional and personal interests. The width at any point along the timeline represents the self-reported attention I gave to each project at that point in my career.  Click on a segment to see the project if it's public.  For a more standard view on my professional history you can view my <a href="/resume_stedden.pdf">conventional resume</a>.</h6>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center cvMobile">
+          <h5>Below is a visualization of the major projects I've worked on through my career. The width at any point along the timeline represents the self-reported attention I gave to each project at that point in my career.  Click on a segment to see the project. Here's a <a href="/resume_stedden.pdf">conventional resume</a> also.</h5>
         </div>
       </div>
       <!-- current projects -->
