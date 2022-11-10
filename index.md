@@ -20,7 +20,7 @@ layout: default
           <h2>I live in <a href="https://www.madisonbikes.org/2020/06/madison-ranked-second-best-us-biking-city/">Madison</a>, Wisconsin. I've worked in <a href="https://munrolab.uchicago.edu/events/">biophysical research</a>, a <a href="https://color.com">genomics startup</a>, and an <a href="https://www.anthem.com/employer/the-benefits-guide/collaborative-expertise-to-drive-the-future-of-ai-in-healthcare">AI research team</a>. In my personal time, I'm working on <a href="https://solarpunktravel.org/">a sustainable travel cooperative</a> and <a href="https://bonkerfield.org/fiction">writing solarpunk</a>.</h2>
           <br/>
           <br/>
-          <h1>Find me on <a href="https://sigmoid.social/@bonkerfield">mastodon</a>, <a href="https://linkedin.com/in/willstedden">linkedin</a>, <a href="https://github.com/stedn">github</a> or at <a href="#">will.stedden@gmail.com</a>.</h1>
+          <h1>Find me on <a href="https://sigmoid.social/@bonkerfield">mastodon</a>, <a href="https://linkedin.com/in/willstedden">linkedin</a>, <a href="https://github.com/stedn">github</a> or <a href="mailto:will.stedden@gmail.com">email</a>.</h1>
         </div>
       </div>
     </div>
