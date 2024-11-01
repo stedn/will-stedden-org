@@ -17,7 +17,7 @@ layout: footerless
       <div class="row text-center" style="margin-top:50px;">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center">
           <h4>Project Timeline
-          <a href="https://bonkerfield.org/2020/05/timeline-streamgraph-google-sheet/"><span class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>Displays concurrent projects I've worked on. <br/> Width indicates how much time I spent on each project. <br/> Time runs vertical with most recent work at the top.</p>" >🛈</span></a></h4>
+          <a href="https://opus.stedden.org/2020/05/timeline-streamgraph-google-sheet/"><span class="mytooltip" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>Displays concurrent projects I've worked on. <br/> Width indicates how much time I spent on each project. <br/> Time runs vertical with most recent work at the top.</p>" >🛈</span></a></h4>
         </div>
       </div>
     </div>
