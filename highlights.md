@@ -7,6 +7,7 @@ layout: default
       <div class="row text-center">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center">
           <h5>These are a few highlighted projects that I've worked on and published in various formats.  </h5>
+          <p>You can see a more detailed visualization of my project history <a href="/history">here</a></p>
         </div>
       </div>
       <!-- current projects -->
@@ -17,9 +18,9 @@ layout: default
       </div>
       <div class="row" style="margin: 0 auto;max-width:800px;">
         <div class="column textover">
-          <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>modification of deep learning text-to-image algorithm BigSleep for generating hallucinatory videos from stories</p>" href="https://opus.stedden.org/2021/01/story2hallucination/"><img src="images/story2hallucination.png" style="width:100%"></a>
-          <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>modification of deep learning text-to-image algorithm BigSleep for generating hallucinatory videos from stories</p>" href="https://opus.stedden.org/2021/01/story2hallucination/"><p class="centered">story2hallucination</p></a>
-          <p style="text-align:right;font-size:0.9em;font-weight:400;font-style:italic;"><a target="_blank" href="https://opus.stedden.org/attention">sample</a>, <a target="_blank" href="https://opus.stedden.org/2021/01/story2hallucination/">writeup</a></p>
+          <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>app with automated detection of solar panels from aerial imagery</p>" href="https://solarscan.appspot.com"><img src="images/solarscan_app1.jpg" style="width:100%"></a>
+          <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>app with automated detection of solar panels from aerial imagery</p>" href="https://solarscan.appspot.com"><p class="centered">SolarScan</p></a>
+          <p style="text-align:right;font-size:0.9em;font-weight:400;font-style:italic;"><a target="_blank" href="https://solarscan.appspot.comhttps://opus.stedden.org/attention">demo</a>, <a target="_blank" href="https://opus.stedden.org/2025/02/solar-pv-map-detection/">writeup</a></p>
         </div>
         <div class="column textover">
           <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>causal inference method using deep learning</p>" href="https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-021-01383-x"><img src="images/bcaus.png" style="width:100%"></a>
@@ -27,9 +28,9 @@ layout: default
           <p style="text-align:right;font-size:0.9em;font-weight:400;font-style:italic;"><a target="_blank" href="https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-021-01383-x">paper</a></p>
         </div>
         <div class="column textover">
-          <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>interactive dynamics model of virus transmission by international flights</p>" href="http://bl.ocks.org/stedn/b0acdeba81751c5f8e4ccaa74ccb09a9"><img src="images/virus.png" style="width:100%"></a>
-          <a target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>interactive dynamics model of virus transmission by international flights</p>" href="http://bl.ocks.org/stedn/b0acdeba81751c5f8e4ccaa74ccb09a9"> <p class="centered">virus flight model</p></a>
-          <p style="text-align:right;font-size:0.9em;font-weight:400;font-style:italic;"><a target="_blank" href="http://bl.ocks.org/stedn/b0acdeba81751c5f8e4ccaa74ccb09a9">demo</a>, <a target="_blank" href="https://opus.stedden.org/2020/02/wuhan-virus-model/">writeup</a></p>
+          <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>modification of deep learning text-to-image algorithm BigSleep for generating hallucinatory videos from stories</p>" href="https://opus.stedden.org/2021/01/story2hallucination/"><img src="images/story2hallucination.png" style="width:100%"></a>
+          <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>modification of deep learning text-to-image algorithm BigSleep for generating hallucinatory videos from stories</p>" href="https://opus.stedden.org/2021/01/story2hallucination/"><p class="centered">story2hallucination</p></a>
+          <p style="text-align:right;font-size:0.9em;font-weight:400;font-style:italic;"><a target="_blank" href="https://opus.stedden.org/attention">sample</a>, <a target="_blank" href="https://opus.stedden.org/2021/01/story2hallucination/">writeup</a></p>
         </div>
         <div class="column textover">
           <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>ebike and trailer carrying solar panels for traveling 5000 miles across US</p>" href="https://opus.stedden.org/2021/01/ebike-solar-trailer/"><img src="images/ebike.png" style="width:100%"></a>
@@ -65,6 +66,7 @@ layout: default
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 order-2 align-self-center">
           <br/>
           <h4>These are a few highlighted projects that I've worked on and published in various formats.  </h4>
+          <p>You can see a more detailed visualization of my project history <a href="/history">here</a></p>
         </div>
       </div>
       <!-- current projects -->
@@ -75,9 +77,9 @@ layout: default
       </div>
       <div class="row" style="margin: 0 auto;max-width:800px;">
         <div class="column2 textover">
-          <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>modification of deep learning text-to-image algorithm BigSleep for generating hallucinatory videos from stories</p>" href="https://opus.stedden.org/2021/01/story2hallucination/"><img src="images/story2hallucination.png" style="width:100%"></a>
-          <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>modification of deep learning text-to-image algorithm BigSleep for generating hallucinatory videos from stories</p>" href="https://opus.stedden.org/2021/01/story2hallucination/"><p class="centered">story2hallucination</p></a>
-          <p style="text-align:right;font-size:0.9em;font-weight:400;font-style:italic;"><a target="_blank" href="https://opus.stedden.org/attention">sample</a>, <a target="_blank" href="https://opus.stedden.org/2021/01/story2hallucination/">writeup</a></p>
+          <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>app with automated detection of solar panels from aerial imagery</p>" href="https://solarscan.appspot.com"><img src="images/solarscan_app1.jpg" style="width:100%"></a>
+          <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>app with automated detection of solar panels from aerial imagery</p>" href="https://solarscan.appspot.com"><p class="centered">SolarScan</p></a>
+          <p style="text-align:right;font-size:0.9em;font-weight:400;font-style:italic;"><a target="_blank" href="https://solarscan.appspot.comhttps://opus.stedden.org/attention">demo</a>, <a target="_blank" href="https://opus.stedden.org/2025/02/solar-pv-map-detection/">writeup</a></p>
         </div>
         <div class="column2 textover">
           <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>causal inference method using deep learning</p>" href="https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-021-01383-x"><img src="images/bcaus.png" style="width:100%"></a>
@@ -87,9 +89,9 @@ layout: default
       </div>
       <div class="row" style="margin: 0 auto;max-width:800px;">
         <div class="column2 textover">
-          <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>interactive dynamics model of virus transmission by international flights</p>" href="http://bl.ocks.org/stedn/b0acdeba81751c5f8e4ccaa74ccb09a9"><img src="images/virus.png" style="width:100%"></a>
-          <a target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>interactive dynamics model of virus transmission by international flights</p>" href="http://bl.ocks.org/stedn/b0acdeba81751c5f8e4ccaa74ccb09a9"> <p class="centered">virus flight model</p></a>
-          <p style="text-align:right;font-size:0.9em;font-weight:400;font-style:italic;"><a target="_blank" href="http://bl.ocks.org/stedn/b0acdeba81751c5f8e4ccaa74ccb09a9">demo</a>, <a target="_blank" href="https://opus.stedden.org/2020/02/wuhan-virus-model/">writeup</a></p>
+          <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>modification of deep learning text-to-image algorithm BigSleep for generating hallucinatory videos from stories</p>" href="https://opus.stedden.org/2021/01/story2hallucination/"><img src="images/story2hallucination.png" style="width:100%"></a>
+          <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>modification of deep learning text-to-image algorithm BigSleep for generating hallucinatory videos from stories</p>" href="https://opus.stedden.org/2021/01/story2hallucination/"><p class="centered">story2hallucination</p></a>
+          <p style="text-align:right;font-size:0.9em;font-weight:400;font-style:italic;"><a target="_blank" href="https://opus.stedden.org/attention">sample</a>, <a target="_blank" href="https://opus.stedden.org/2021/01/story2hallucination/">writeup</a></p>
         </div>
         <div class="column2 textover">
           <a class="mytooltip" target="_blank" tlite="se" title="<p style=&quot;margin-bottom:0;font-size:1.2em;text-align:center&quot;>ebike and trailer carrying solar panels for traveling 5000 miles across US</p>" href="https://opus.stedden.org/2021/01/ebike-solar-trailer/"><img src="images/ebike.png" style="width:100%"></a>
